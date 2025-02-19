@@ -21,8 +21,7 @@ public class UserLogout extends HttpServlet{
 		
 			httpSession.invalidate();
 			
-			RequestDispatcher dispatcher= req.getRequestDispatcher("user-login.jsp");
-			dispatcher.forward(req, resp);
+		    resp.sendRedirect("user-login.jsp");
 		}
 	}
 }

@@ -1,3 +1,5 @@
+<%@page import="com.jsp.cloth_show_room.dto.User"%>
+<%@page import="com.jsp.cloth_show_room.dao.UserDao"%>
 <%@page import="java.util.Base64"%>
 <%@page import="java.time.LocalDate"%>
 <%@page import="com.jsp.cloth_show_room.dao.ClothDetailsDao"%>
@@ -32,7 +34,11 @@ section {
 	<jsp:include page="user-cart-navbar.jsp"></jsp:include>
 	<%
 			String string=(String)request.getAttribute("cartAdd");
+	
+			String email=(String)session.getAttribute("email");
 			
+			User user=new UserDao().getUserById(email);
+	
 			int count = 0;
 	%>
 	
@@ -64,7 +70,7 @@ section {
 		%>
 
 		<%
-		if (userCart.getUserCartId() == clothDetail.getClothBarCode()) {
+		if ((userCart.getUserCartId()==user.getUserId())) {
 		%>
 		<!-- total cart price calculation -->
 		<%

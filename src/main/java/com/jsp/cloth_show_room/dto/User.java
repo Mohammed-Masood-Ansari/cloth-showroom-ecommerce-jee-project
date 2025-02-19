@@ -8,6 +8,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 @Entity
 public class User {
@@ -22,6 +23,8 @@ public class User {
 	@OneToMany(mappedBy = "user")
 	private List<BuyNow> buyNows;
 	
+	@OneToOne(mappedBy = "user")
+	private UserCart cart;
 	
 	public int getUserId() {
 		return userId;

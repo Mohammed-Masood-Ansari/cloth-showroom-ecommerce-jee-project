@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.jsp.cloth_show_room.dao.ClothDetailsDao;
+import com.jsp.cloth_show_room.dao.UserDao;
 import com.jsp.cloth_show_room.dto.BuyNow;
 import com.jsp.cloth_show_room.dto.ClothDetails;
 import com.jsp.cloth_show_room.dto.User;
@@ -23,6 +24,17 @@ public class BuyNowInsertController extends HttpServlet {
 	@SuppressWarnings("unused")
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
+		HttpSession httpSession = req.getSession();
+		
+		String userEmail = (String) httpSession.getAttribute("email");
+		
+		System.out.println(userEmail);
+		
+		
+		User user = new UserDao().getUserById(userEmail);
+		
+		System.out.println(user.getUserId());
 		
 		ClothDetailsDao clothDetailsDao = new ClothDetailsDao();
 		
@@ -42,6 +54,7 @@ public class BuyNowInsertController extends HttpServlet {
 		buyNow.setPrice(price*quantity);
 		buyNow.setQuantity(quantity);
 		buyNow.setClothDetails(clothDetails);
+		buyNow.setUser(user);
 		
 		BuyNowService buyNowService = new BuyNowService();
 		

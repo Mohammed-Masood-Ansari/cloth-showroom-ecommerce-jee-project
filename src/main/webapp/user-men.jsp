@@ -19,8 +19,12 @@
 <body>
 
 	<%
-		UserDao dao = new UserDao();
+		String email=(String)session.getAttribute("email");
 	
+		UserDao dao = new UserDao();
+		
+		User user = dao.getUserById(email);
+		
 		List<ClothDetails> clothDetails = dao.getAllMen();
 	%>
 	<jsp:include page="user-navbar.jsp"></jsp:include>

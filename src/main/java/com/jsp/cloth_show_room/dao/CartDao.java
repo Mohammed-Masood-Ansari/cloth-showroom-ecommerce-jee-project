@@ -52,4 +52,8 @@ public class CartDao {
 	public List<UserCart> getAllCarts(){ 
 		return entityManager.createQuery("From UserCart").getResultList();
 	}
+	
+	public List<UserCart> getCartsDetailsByUserIdDao(int userId){
+		return entityManager.createNativeQuery("select * from usercart where userId=?1",UserCart.class).setParameter(1, userId).getResultList();
+	}
 }

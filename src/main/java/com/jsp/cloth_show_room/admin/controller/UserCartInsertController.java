@@ -45,14 +45,14 @@ public class UserCartInsertController  extends HttpServlet {
 		
 		if(clothDetails!=null) {
 			
-			double finalPrice =  clothDetails.getClothPrice()-(clothDetails.getClothPrice()*clothDetails.getOffer())/100;
-			userCart.setUserCartId(barCode);
+			double finalPrice = clothDetails.getClothPrice()-(clothDetails.getClothPrice()*clothDetails.getOffer())/100;
 			userCart.setClothPrice(finalPrice);
 			userCart.setClothType(clothDetails.getClothType());
 			userCart.setOffer(clothDetails.getClothBarCode());
 			userCart.setWearType(clothDetails.getWearType());
 			userCart.setOffer(clothDetails.getOffer());
 			userCart.setUser(user);
+			userCart.setClothDetails(clothDetails);
 			cartDao.saveUserCart(userCart);
 			
 			RequestDispatcher dispatcher = req.getRequestDispatcher("user-cart.jsp");

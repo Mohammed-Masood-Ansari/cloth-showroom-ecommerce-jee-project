@@ -1,5 +1,6 @@
 package com.jsp.cloth_show_room.dto;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -10,8 +11,15 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
+
 @Entity
-public class User {
+@Getter
+@Setter
+@EqualsAndHashCode
+public class User implements Serializable{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,37 +31,7 @@ public class User {
 	@OneToMany(mappedBy = "user")
 	private List<BuyNow> buyNows;
 	
-	@OneToOne(mappedBy = "user")
-	private UserCart cart;
+	@OneToMany(mappedBy = "user")
+	private List<UserCart> cart;
 	
-	public int getUserId() {
-		return userId;
-	}
-	public void setUserId(int userId) {
-		this.userId = userId;
-	}
-	public String getUserEmail() {
-		return userEmail;
-	}
-	public void setUserEmail(String userEmail) {
-		this.userEmail = userEmail;
-	}
-	public String getUserPassword() {
-		return userPassword;
-	}
-	public void setUserPassword(String userPassword) {
-		this.userPassword = userPassword;
-	}
-	public String getUserConfirmPassword() {
-		return userConfirmPassword;
-	}
-	public void setUserConfirmPassword(String userConfirmPassword) {
-		this.userConfirmPassword = userConfirmPassword;
-	}
-	public List<BuyNow> getBuyNows() {
-		return buyNows;
-	}
-	public void setBuyNows(List<BuyNow> buyNows) {
-		this.buyNows = buyNows;
-	}
 }

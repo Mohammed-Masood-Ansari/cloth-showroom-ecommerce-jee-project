@@ -1,11 +1,22 @@
 package com.jsp.cloth_show_room.dto;
 
+import java.io.Serializable;
+import java.util.Arrays;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Lob;
+import javax.persistence.OneToOne;
+
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
-public class ClothDetails {
+@Getter
+@Setter
+@EqualsAndHashCode
+public class ClothDetails implements Serializable{
 
 	@Id
 	private int clothBarCode;
@@ -17,40 +28,7 @@ public class ClothDetails {
 	@Lob
 	private byte[] image;
 	
-	public int getClothBarCode() {
-		return clothBarCode;
-	}
-	public void setClothBarCode(int clothBarCode) {
-		this.clothBarCode = clothBarCode;
-	}
-	public String getClothType() {
-		return clothType;
-	}
-	public void setClothType(String clothType) {
-		this.clothType = clothType;
-	}
-	public String getWearType() {
-		return wearType;
-	}
-	public void setWearType(String wearType) {
-		this.wearType = wearType;
-	}
-	public double getClothPrice() {
-		return clothPrice;
-	}
-	public void setClothPrice(double clothPrice) {
-		this.clothPrice = clothPrice;
-	}
-	public byte[] getImage() {
-		return image;
-	}
-	public void setImage(byte[] image) {
-		this.image = image;
-	}
-	public int getOffer() {
-		return offer;
-	}
-	public void setOffer(int offer) {
-		this.offer = offer;
-	}
+	@OneToOne(mappedBy = "clothDetails")
+	private UserCart cart;
+
 }

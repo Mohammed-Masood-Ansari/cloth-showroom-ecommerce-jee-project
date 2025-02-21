@@ -5,7 +5,10 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
+import javax.persistence.NoResultException;
+import javax.persistence.NonUniqueResultException;
 import javax.persistence.Persistence;
+import javax.persistence.Query;
 
 import com.jsp.cloth_show_room.dto.ClothDetails;
 import com.jsp.cloth_show_room.dto.User;
@@ -48,6 +51,15 @@ public class UserDao {
 			}
 		}
 		return null;
+	}
+	
+	public User getUserByEmailDao(String email) {
+		Query query=entityManager.createQuery("Select u From User u Where u.userEmail=?1").setParameter(1, email);	
+		try {
+			return (User) query.getSingleResult();
+		} catch (NoResultException|NonUniqueResultException e) {
+			return null;
+		}	
 	}
 	
 	/*

@@ -33,44 +33,39 @@ section {
 <body>
 	<jsp:include page="user-cart-navbar.jsp"></jsp:include>
 	<%
-			String string=(String)request.getAttribute("cartAdd");
-	
-			String email=(String)session.getAttribute("email");
-			
-			User user=new UserDao().getUserById(email);
-	
-			int count = 0;
+	String string = (String) request.getAttribute("cartAdd");
+
+	String email = (String) session.getAttribute("email");
+
+	User user = new UserDao().getUserByEmailDao(email);
+
+	List<UserCart> userCarts = new CartDao().getCartsDetailsByUserIdDao(user.getUserId());
+
+	int count = 0;
+	int finalPrice = 0;
+	UserCart cart = null;
 	%>
-	
-	<%if(string!=null){%>
-	
-		<h3 style="margin: 10px;">Success-Order</h3>
-	<%}%>
+
+	<%
+	if (string != null) {
+	%>
+
+	<h3 style="margin: 10px;">Success-Order</h3>
+	<%
+	}
+	%>
 	<section style="margin-top: 80px;">
 		<%
-		CartDao cartDao = new CartDao();
-		List<UserCart> userCarts = cartDao.getAllCarts();
-
-		ClothDetailsDao clothDetailsDao = new ClothDetailsDao();
-
-		List<ClothDetails> clothDetails = clothDetailsDao.getAllClothDetails();
-
-		//ClothDetails clothDetails = clothDetailsDao.getClothDetails(clothBarCode);
-		int finalPrice = 0;
-		
-		UserCart cart =new UserCart();
-		%>
-
-		<%
 		for (UserCart userCart : userCarts) {
-		%>
-		<%cart.setUserCartId(userCart.getUserCartId());%>
-		<%
-		for (ClothDetails clothDetail : clothDetails) {
-		%>
 
+			if (userCart != null && userCarts!=null) {
+
+				ClothDetails clothDetail = userCart.getClothDetails();
+
+				cart = new UserCart();
+		%>
 		<%
-		if ((userCart.getUserCartId()==user.getUserId())) {
+		cart.setUserCartId(userCart.getUserCartId());
 		%>
 		<!-- total cart price calculation -->
 		<%
@@ -82,7 +77,9 @@ section {
 		String base64Image = Base64.getEncoder().encodeToString(image);
 		%>
 
-		<%count++;%>
+		<%
+		count++;
+		%>
 		<article>
 			<div class="card"
 				style="width: 17rem; height: 27rem; float: left; margin-left: 10px; border: solid 2px green; margin-top: 20px;">
@@ -114,20 +111,21 @@ section {
 		<%
 		}
 		%>
-		
 		<%
 		}
+		if (cart != null) {
 		%>
-		<%
-		}
-		%>
-	
+
 		<div style="margin-top: 480px; margin-left: 30px;">
-		<a href="order-all-added-cart.jsp?id=<%=cart.getUserCartId()%>" class="btn btn-primary" style="width: 300px; margin-left: -20px;">Place-Order</a>
-		<a href="#" class="btn btn-primary" style=""><%=finalPrice%></a>
-			
+			<a href="order-all-added-cart.jsp?id=<%=cart.getUserCartId()%>"
+				class="btn btn-primary" style="width: 300px; margin-left: -20px;">Place-Order</a>
+			<a href="#" class="btn btn-primary" style=""><%=finalPrice%></a>
+
 		</div>
-	
+
+		<%
+		}
+		%>
 	</section>
 </body>
 </html>

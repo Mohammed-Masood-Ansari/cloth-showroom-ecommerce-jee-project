@@ -19,19 +19,20 @@ import lombok.Setter;
 @Getter
 @Setter
 @EqualsAndHashCode
-public class User implements Serializable{
-
+public class User implements Serializable {
+	
+	private static final long serialVersionUID = 3L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int userId;
 	private String userEmail;
 	private String userPassword;
 	private String userConfirmPassword;
-	
+
 	@OneToMany(mappedBy = "user")
 	private List<BuyNow> buyNows;
-	
+
 	@OneToMany(mappedBy = "user")
 	private List<UserCart> cart;
-	
+
 }

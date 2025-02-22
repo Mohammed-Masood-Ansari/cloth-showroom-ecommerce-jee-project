@@ -102,7 +102,7 @@ section {
 						<a
 							href="openPlaceOrder?barcode=<%=clothDetail.getClothBarCode()%>"
 							class="btn btn-primary">BuyNow</a> <a
-							href="delete?barcode=<%=clothDetail.getClothBarCode()%>"
+							href="delete?cartId=<%=cart.getUserCartId()%>"
 							class="btn btn-primary" style="margin-left: 20px;">DELETE</a>
 					</div>
 				</div>

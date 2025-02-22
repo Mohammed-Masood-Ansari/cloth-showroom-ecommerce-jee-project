@@ -1,3 +1,4 @@
+<%@page import="com.jsp.cloth_show_room.dto.UserCart"%>
 <%@page import="java.util.Base64"%>
 <%@page import="com.jsp.cloth_show_room.dto.ClothDetails"%>
 <%@page import="com.jsp.cloth_show_room.dto.User"%>
@@ -23,7 +24,10 @@
 	
 		UserDao dao = new UserDao();
 		
-		User user = dao.getUserById(email);
+		User user = dao.getUserByEmailDao(email);
+		
+		List<UserCart> userCarts=user.getCart();
+		
 		
 		List<ClothDetails> clothDetails = dao.getAllMen();
 	%>
@@ -58,7 +62,13 @@
 						<%=clothDetails2.getClothPrice()-((clothDetails2.getClothPrice())*(clothDetails2.getOffer()))/100%>&nbsp;
 					</h6>
 					<div style="display: flex;">
-						<a href="userCartInsert?barcode=<%=clothDetails2.getClothBarCode()%>" class="btn btn-primary" >Add To Cart</a>
+						<%for(UserCart cart:userCarts){
+						if(user.getUserId()==cart.getUser().getUserId()&&clothDetails2.getClothBarCode()==cart.getClothDetails().getClothBarCode()){	
+						%>
+							<a href="userCartInsert?barcode=<%=clothDetails2.getClothBarCode()%>" class="btn btn-primary" >GoToCart</a>	
+						<%}else{%>
+								<a href="userCartInsert?barcode=<%=clothDetails2.getClothBarCode()%>" class="btn btn-primary" >Add To Cart</a>
+						<%}}%>
 						<a href="openPlaceOrder?barcode=<%=clothDetails2.getClothBarCode()%>" class="btn btn-primary" style="margin-left: 20px;">By Now</a>
 					</div>
 				</div>

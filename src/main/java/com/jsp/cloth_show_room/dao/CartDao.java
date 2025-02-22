@@ -36,8 +36,8 @@ public class CartDao {
 	/*
 	 * deleteUserById
 	 */
-	public void deleteUserById(int userId) {
-		UserCart userCart=getUserById(userId);
+	public void deleteUserCartByIdDao(int cartId) {
+		UserCart userCart=entityManager.find(UserCart.class, cartId);
 		if(userCart!=null) {
 			entityTransaction.begin();
 			entityManager.remove(userCart);

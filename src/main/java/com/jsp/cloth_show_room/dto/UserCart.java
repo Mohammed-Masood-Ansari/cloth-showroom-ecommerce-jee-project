@@ -24,7 +24,7 @@ import lombok.Setter;
 @Setter
 @EqualsAndHashCode
 public class UserCart implements Serializable {
-
+	 private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int userCartId;
@@ -37,7 +37,7 @@ public class UserCart implements Serializable {
 	@JoinColumn(name = "userId")
 	private User user;
 
-	@OneToOne(fetch = FetchType.LAZY)
+	@OneToOne
 	@JoinColumn(name = "clothBarCode")
 	private ClothDetails clothDetails;
 

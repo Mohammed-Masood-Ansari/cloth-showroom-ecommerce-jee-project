@@ -17,11 +17,11 @@ public class UserCartDeleteController extends HttpServlet{
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		int barcdoe  = Integer.parseInt(req.getParameter("barcode"));
+		int cartid  = Integer.parseInt(req.getParameter("cartId"));
 		
 		CartDao cartDao = new CartDao();
 		
-		cartDao.deleteUserById(barcdoe);
+		cartDao.deleteUserCartByIdDao(cartid);
 		
 		RequestDispatcher dispatcher = req.getRequestDispatcher("user-cart.jsp");
 		dispatcher.forward(req, resp);

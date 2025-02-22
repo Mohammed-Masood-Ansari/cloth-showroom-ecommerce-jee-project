@@ -17,7 +17,7 @@ import lombok.Setter;
 @Setter
 @EqualsAndHashCode
 public class ClothDetails implements Serializable{
-
+	private static final long serialVersionUID = 2L;
 	@Id
 	private int clothBarCode;
 	private String clothType;
@@ -27,8 +27,5 @@ public class ClothDetails implements Serializable{
 	
 	@Lob
 	private byte[] image;
-	
-	@OneToOne(mappedBy = "clothDetails")
-	private UserCart cart;
 
 }

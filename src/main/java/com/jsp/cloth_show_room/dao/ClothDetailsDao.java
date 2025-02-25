@@ -31,7 +31,6 @@ public class ClothDetailsDao {
 		return entityManager.createQuery("FROM ClothDetails").getResultList();
 	}
 	
-	
 	/*
 	 * getClothById
 	 */

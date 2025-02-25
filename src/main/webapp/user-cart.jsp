@@ -13,7 +13,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>USER-CART</title>
 
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
@@ -31,7 +31,7 @@ section {
 </style>
 </head>
 <body>
-	<jsp:include page="user-cart-navbar.jsp"></jsp:include>
+	<jsp:include page="user-navbar.jsp"></jsp:include>
 	<%
 	String string = (String) request.getAttribute("cartAdd");
 

@@ -7,6 +7,7 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 
 import com.jsp.cloth_show_room.dto.BuyNow;
+import com.jsp.cloth_show_room.dto.ClothDetails;
 import com.jsp.cloth_show_room.dto.UserCart;
 
 public class BuyNowDao {
@@ -38,6 +39,11 @@ public class BuyNowDao {
 		
 		return buyNows;
 	}
+	
+	public List<BuyNow> getAllOrderDetailsByUserIdDao(int userId){
+		return entityManager.createNativeQuery("select * from  product_order where userid=?1",BuyNow.class).setParameter(1, userId).getResultList();
+	}
+	
 	public List<BuyNow> getAllBuyNows(){
 		return entityManager.createQuery("FROM BuyNow").getResultList();
 	}

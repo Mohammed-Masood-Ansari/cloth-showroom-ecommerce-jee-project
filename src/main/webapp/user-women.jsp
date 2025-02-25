@@ -68,7 +68,7 @@
 						if (product) {
 						%>
 						<a
-							href="userCartInsert?barcode=<%=clothDetails2.getClothBarCode()%>"
+							href="user-cart.jsp"
 							class="btn btn-primary">GoToCart</a>
 						<%
 						} else {

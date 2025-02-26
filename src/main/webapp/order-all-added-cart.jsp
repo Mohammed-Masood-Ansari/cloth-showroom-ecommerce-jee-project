@@ -2,7 +2,7 @@
 <%@page import="com.jsp.cloth_show_room.dto.User"%>
 <%@page import="com.jsp.cloth_show_room.dto.ClothDetails"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,13 +10,13 @@
 <title>Insert title here</title>
 </head>
 <body>
-		<%
-		 ClothDetails clothDetails = (ClothDetails)request.getAttribute("clothDetails");
-		 User user = (User)request.getAttribute("user");
-	    %>
-	    
+	<%
+	ClothDetails clothDetails = (ClothDetails) request.getAttribute("clothDetails");
+	User user = (User) request.getAttribute("user");
+	%>
+
 	<jsp:include page="user-navbar.jsp"></jsp:include>
-	
+
 	<section>
 
 		<article>
@@ -36,29 +36,25 @@
 											<div class="form-outline mb-4">
 												<label class="form-label" for="form3Example1cg">pinCode</label>
 												<input type="number" id="form3Example1cg"
-													class="form-control form-control-lg" name="pinCode"/>
+													class="form-control form-control-lg" name="pinCode" />
 											</div>
-											
-											<div class="form-outline mb-4">
-												<label class="form-label" for="form3Example4cg">Quantity</label>
-												<input type="number" id="form3Example4cg"
-													class="form-control form-control-lg" name="quantity"/>
-											</div>
-											
+
 											<div class="form-outline mb-4">
 												<label class="form-label" for="form3Example3cg">address</label>
 												<textarea type="text" id="form3Example3cg"
-													class="form-control form-control-lg" name="address"></textarea> 
+													class="form-control form-control-lg" name="address"></textarea>
 											</div>
-											
+
 											<div class="form-outline mb-4">
 												<label class="form-label" for="form3Example4cg">Estimated-delivery</label>
 												<input type="date" id="form3Example4cg"
-													class="form-control form-control-lg" name="delivery" value="<%=LocalDate.now().plusDays(3)%>"/>
+													class="form-control form-control-lg" name="delivery"
+													value="<%=LocalDate.now().plusDays(3)%>" />
 											</div>
-											
+
 											<div class="d-flex justify-content-center">
-												<input type="submit" value="Place-Order" class="btn btn-primary"/>
+												<input type="submit" value="Place-Order"
+													class="btn btn-primary" />
 											</div>
 
 										</form>
@@ -74,6 +70,6 @@
 		</article>
 
 	</section>
-		
+
 </body>
 </html>

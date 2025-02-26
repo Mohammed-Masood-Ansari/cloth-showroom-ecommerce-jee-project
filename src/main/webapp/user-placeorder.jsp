@@ -20,8 +20,12 @@
 <body>
 
 	<%
-		ClothDetails clothDetails = (ClothDetails)request.getAttribute("clothDetails");
-		User user = (User)request.getAttribute("user");
+		int barcode=Integer.parseInt(request.getParameter("barcode"));
+	
+		double finalprice=Double.parseDouble(request.getParameter("finalPrice"));
+		
+		int quantity=Integer.parseInt(request.getParameter("quantity"));
+		
 	%>
 	
 	<jsp:include page="user-navbar.jsp"></jsp:include>
@@ -44,7 +48,7 @@
 											<div class="form-outline mb-4">
 												<label class="form-label" for="form3Example1cg">barCode</label>
 												<input type="number" id="form3Example1cg"
-													class="form-control form-control-lg" name="barcode" value="<%=clothDetails.getClothBarCode()%>"/>
+													class="form-control form-control-lg" name="barcode" value="<%=barcode%>"/>
 											</div>
 
 											<div class="form-outline mb-4">
@@ -63,14 +67,10 @@
 											<div class="form-outline mb-4">
 												<label class="form-label" for="form3Example4cg">cloth-price</label>
 												<input type="number" id="form3Example4cg"
-													class="form-control form-control-lg" name="price" value="<%=clothDetails.getClothPrice()-(clothDetails.getClothPrice()*clothDetails.getOffer())/100%>"/>
+													class="form-control form-control-lg" name="price" value="<%=finalprice%>"/>
 											</div>
 											
-											<div class="form-outline mb-4">
-												<label class="form-label" for="form3Example4cg">Quantity</label>
-												<input type="number" id="form3Example4cg"
-													class="form-control form-control-lg" name="quantity"/>
-											</div>
+											<input type="number" name="quantity" value="<%=quantity%>" hidden="true">
 											
 											<div class="form-outline mb-4">
 												<label class="form-label" for="form3Example4cg">Estimated-delivery</label>

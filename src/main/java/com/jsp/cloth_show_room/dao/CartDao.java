@@ -29,7 +29,7 @@ public class CartDao {
 	/*
 	 * getById
 	 */
-	public UserCart getUserById(int userId) {
+	public UserCart getUserCartByIdDao(int userId) {
 		return entityManager.find(UserCart.class, userId);
 	}
 
@@ -44,6 +44,21 @@ public class CartDao {
 			entityTransaction.commit();
 		}
 	}
+	
+	/*
+	 * getById
+	 */
+	public UserCart updateUserCartQuantityAndPriceDao(UserCart userCart) {
+		try {
+			entityTransaction.begin();
+			entityManager.merge(userCart);
+			entityTransaction.commit();
+			return userCart;
+		} catch (Exception e) {
+			return null;
+		}
+	}
+
 
 	/*
 	 * getAllCarts

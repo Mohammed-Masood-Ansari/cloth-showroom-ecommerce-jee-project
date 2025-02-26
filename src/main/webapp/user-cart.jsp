@@ -20,6 +20,7 @@
 	rel="stylesheet"
 	integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
 	crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <style type="text/css">
 section {
 	border: solid 2px red;
@@ -58,7 +59,7 @@ section {
 		<%
 		for (UserCart userCart : userCarts) {
 
-			if (userCart != null && userCarts!=null) {
+			if (userCart != null && userCarts != null) {
 
 				ClothDetails clothDetail = userCart.getClothDetails();
 
@@ -82,7 +83,7 @@ section {
 		%>
 		<article>
 			<div class="card"
-				style="width: 17rem; height: 27rem; float: left; margin-left: 10px; border: solid 2px green; margin-top: 20px;">
+				style="width: 17rem; height: 32rem; float: left; margin-left: 10px; border: solid 2px green; margin-top: 20px;">
 				<div>
 					<img src="data:image/png;base64,<%=base64Image%>"
 						class="card-img-top" alt="myImage" width="60px;" height="310px;">
@@ -94,19 +95,25 @@ section {
 						<del><%=clothDetail.getClothPrice()%></del>
 						discount=<%=clothDetail.getOffer()%>%
 					</h6>
+					<%double price=clothDetail.getClothPrice() - ((clothDetail.getClothPrice()) * (clothDetail.getOffer())) / 100;%>
 					<h6 class="card-text">
-						final price=
-						<%=clothDetail.getClothPrice() - ((clothDetail.getClothPrice()) * (clothDetail.getOffer())) / 100%>&nbsp;
+						finalPrice=<%=userCart.getClothPrice()%>&nbsp;
 					</h6>
 					<div style="display: flex;">
 						<a
-							href="openPlaceOrder?barcode=<%=clothDetail.getClothBarCode()%>"
+							href="user-placeorder.jsp?barcode=<%=clothDetail.getClothBarCode()%>&finalPrice=<%=userCart.getClothPrice()%>&quantity=<%=userCart.getQuantity()%>"
 							class="btn btn-primary">BuyNow</a> <a
 							href="delete?cartId=<%=cart.getUserCartId()%>"
-							class="btn btn-primary" style="margin-left: 20px;">DELETE</a>
+							class="btn btn-primary" style="margin-left: 20px;">DELETE</a><br>
 					</div>
+					<h6>quantity</h6>
+					<div style="display: flex;">
+					<input type="number" name="quantity" value="<%=userCart.getQuantity()%>"> <a href="updateCartProductQuantity?id=<%=cart.getUserCartId()%>&price=<%=price%>"
+						class="btn btn-primary"><button class="plus-button">+</button></a>
+				</div>
 				</div>
 			</div>
+
 		</article>
 		<%
 		}
@@ -117,7 +124,7 @@ section {
 		%>
 
 		<div style="margin-top: 480px; margin-left: 30px;">
-			<a href="order-all-added-cart.jsp?id=<%=cart.getUserCartId()%>"
+			<a href="order-all-added-cart.jsp?id=<%=user.getUserId()%>"
 				class="btn btn-primary" style="width: 300px; margin-left: -20px;">Place-Order</a>
 			<a href="#" class="btn btn-primary" style=""><%=finalPrice%></a>
 

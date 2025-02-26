@@ -25,7 +25,7 @@ import com.jsp.cloth_show_room.service.BuyNowService;
 
 @SuppressWarnings("serial")
 @WebServlet("/placeAllCartOrder")
-public class UserCartOrderController extends HttpServlet {
+public class PlaceAllCartOrderController extends HttpServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -38,7 +38,7 @@ public class UserCartOrderController extends HttpServlet {
 		
 		CartDao cartDao = new CartDao();
 
-		List<UserCart> userCarts = cartDao.getAllCarts();
+		List<UserCart> userCarts = cartDao.getCartsDetailsByUserIdDao(user.getUserId());
 
 		ClothDetailsDao clothDetailsDao = new ClothDetailsDao();
 
@@ -61,11 +61,11 @@ public class UserCartOrderController extends HttpServlet {
 			
 			buyNow.setAddress(req.getParameter("address"));
 			buyNow.setPinCode(req.getParameter("pinCode"));
-			buyNow.setQuantity(Integer.parseInt(req.getParameter("quantity")));
+			buyNow.setQuantity(1);
 			
-			int clothId = userCart.getUserCartId();
+			int clothId = userCart.getClothDetails().getClothBarCode();
 			buyNow.setDelivarDate(LocalDate.now().plusDays(3));
-			buyNow.setPrice(userCart.getClothPrice() * Integer.parseInt(req.getParameter("quantity")));
+			buyNow.setPrice(userCart.getClothPrice() * 1);
 			buyNow.setUser(user);
 			buyNow.setClothDetails(clothDetailsDao.getClothDetails(clothId));
 

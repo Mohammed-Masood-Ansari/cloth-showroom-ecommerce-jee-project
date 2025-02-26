@@ -51,7 +51,7 @@ public class BuyNowInsertController extends HttpServlet {
 		buyNow.setDelivarDate(LocalDate.now().plusDays(3));
 		buyNow.setAddress(req.getParameter("address"));
 		buyNow.setPinCode(req.getParameter("pinCode"));
-		buyNow.setPrice(price*quantity);
+		buyNow.setPrice(price);
 		buyNow.setQuantity(quantity);
 		buyNow.setClothDetails(clothDetails);
 		buyNow.setUser(user);

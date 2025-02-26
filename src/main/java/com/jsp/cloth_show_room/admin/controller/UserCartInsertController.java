@@ -52,6 +52,7 @@ public class UserCartInsertController  extends HttpServlet {
 			userCart.setWearType(clothDetails.getWearType());
 			userCart.setOffer(clothDetails.getOffer());
 			userCart.setUser(user);
+			userCart.setQuantity(1);
 			userCart.setClothDetails(clothDetails);
 			cartDao.saveUserCart(userCart);
 			

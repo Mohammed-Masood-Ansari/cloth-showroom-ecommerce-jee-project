@@ -29,6 +29,10 @@ section {
 	margin-right: auto;
 	margin-left: auto;
 }
+.custom-input {
+  height: 30px;
+  width: 80px;
+}
 </style>
 </head>
 <body>
@@ -108,7 +112,8 @@ section {
 					</div>
 					<h6>quantity</h6>
 					<div style="display: flex;">
-					<input type="number" name="quantity" value="<%=userCart.getQuantity()%>"> <a href="updateCartProductQuantity?id=<%=cart.getUserCartId()%>&price=<%=price%>"
+					<a href="deleteCartProductQuantity?id=<%=cart.getUserCartId()%>&price=<%=price%>"
+						class="btn btn-primary"><button class="plus-button">-</button></a><input type="number" name="quantity" value="<%=userCart.getQuantity()%>" class="custom-input"> <a href="updateCartProductQuantity?id=<%=cart.getUserCartId()%>&price=<%=price%>"
 						class="btn btn-primary"><button class="plus-button">+</button></a>
 				</div>
 				</div>

@@ -17,6 +17,18 @@
 	rel="stylesheet"
 	integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
 	crossorigin="anonymous">
+
+<style>
+.sort-container {
+	display: flex; /* This makes the elements sit beside each other */
+	align-items: center; /* This vertically centers the text */
+	margin-top: 30px;
+}
+
+.sort-container h5 {
+	margin-left: 10px; /* Adds space between the header and the link */
+}
+</style>
 </head>
 <body>
 
@@ -32,24 +44,27 @@
 	int size = userCarts.size();
 
 	List<ClothDetails> clothDetails = dao.getAllMen();
-
 	%>
-	<jsp:include page="user-navbar.jsp"></jsp:include>
-
+	<jsp:include page="user-navbar.jsp"></jsp:include><br>
+	<div class="sort-container">
+		<h5>SortByPrice</h5>
+		<a href="#">lowtohigh</a>
+	</div>
 	<%
 	for (ClothDetails clothDetails2 : clothDetails) {
 		boolean product = false;
 		byte[] image = clothDetails2.getImage();
 
 		String base64Image = Base64.getEncoder().encodeToString(image);
-		
-		for(UserCart userCart:userCarts){
-			
-			if(userCart.getClothDetails().getClothBarCode()==clothDetails2.getClothBarCode()&&user.getUserId()==userCart.getUser().getUserId()){
-				product=true;
-				break;
+
+		for (UserCart userCart : userCarts) {
+
+			if (userCart.getClothDetails().getClothBarCode() == clothDetails2.getClothBarCode()
+			&& user.getUserId() == userCart.getUser().getUserId()) {
+		product = true;
+		break;
 			}
-			
+
 		}
 	%>
 	<section style="margin-top: 40px;">
@@ -72,16 +87,20 @@
 						<%=clothDetails2.getClothPrice() - ((clothDetails2.getClothPrice()) * (clothDetails2.getOffer())) / 100%>&nbsp;
 					</h6>
 					<div style="display: flex;">
-					
-						<%if(product){%>
-							<a
-							href="user-cart.jsp"
-							class="btn btn-primary">GoToCart</a>
-						<%}else{%>
-							<a
+
+						<%
+						if (product) {
+						%>
+						<a href="user-cart.jsp" class="btn btn-primary">GoToCart</a>
+						<%
+						} else {
+						%>
+						<a
 							href="userCartInsert?barcode=<%=clothDetails2.getClothBarCode()%>"
 							class="btn btn-primary">AddToCart</a>
-						<%}%>
+						<%
+						}
+						%>
 						<a
 							href="openPlaceOrder?barcode=<%=clothDetails2.getClothBarCode()%>"
 							class="btn btn-primary" style="margin-left: 20px;">ByNow</a>

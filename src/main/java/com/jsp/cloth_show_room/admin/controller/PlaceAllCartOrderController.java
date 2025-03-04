@@ -61,7 +61,7 @@ public class PlaceAllCartOrderController extends HttpServlet {
 			
 			buyNow.setAddress(req.getParameter("address"));
 			buyNow.setPinCode(req.getParameter("pinCode"));
-			buyNow.setQuantity(1);
+			buyNow.setQuantity(userCart.getQuantity());
 			
 			int clothId = userCart.getClothDetails().getClothBarCode();
 			buyNow.setDelivarDate(LocalDate.now().plusDays(3));

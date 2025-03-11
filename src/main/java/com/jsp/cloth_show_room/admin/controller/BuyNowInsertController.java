@@ -59,6 +59,8 @@ public class BuyNowInsertController extends HttpServlet {
 		BuyNowService buyNowService = new BuyNowService();
 		
 		buyNowService.saveBuyNow(buyNow);
+		
+		resp.sendRedirect("my-order.jsp");
 	}
 	
 }

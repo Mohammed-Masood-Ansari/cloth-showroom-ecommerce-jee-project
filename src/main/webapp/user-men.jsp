@@ -48,7 +48,8 @@
 	<jsp:include page="user-navbar.jsp"></jsp:include><br>
 	<div class="sort-container">
 		<h5>SortByPrice</h5>
-		<a href="#">lowtohigh</a>
+		<a href="user-men-display-by-price-low-to-high.jsp">lowtohigh</a>&nbsp;&nbsp;
+		<a href="user-men-display-by-price-low-to-high.jsp">hightolow</a>
 	</div>
 	<%
 	for (ClothDetails clothDetails2 : clothDetails) {
@@ -83,8 +84,11 @@
 						discount=<%=clothDetails2.getOffer()%>%
 					</h6>
 					<h6 class="card-text">
+						<%
+						 double finalprice=clothDetails2.getClothPrice() - ((clothDetails2.getClothPrice()) * (clothDetails2.getOffer())) / 100;
+						%>
 						final price=
-						<%=clothDetails2.getClothPrice() - ((clothDetails2.getClothPrice()) * (clothDetails2.getOffer())) / 100%>&nbsp;
+						<%=finalprice%>&nbsp;
 					</h6>
 					<div style="display: flex;">
 
@@ -102,7 +106,7 @@
 						}
 						%>
 						<a
-							href="openPlaceOrder?barcode=<%=clothDetails2.getClothBarCode()%>"
+							href="user-placeorder.jsp?barcode=<%=clothDetails2.getClothBarCode()%>&finalPrice=<%=finalprice%>&quantity=<%=1%>"
 							class="btn btn-primary" style="margin-left: 20px;">ByNow</a>
 					</div>
 				</div>

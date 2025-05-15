@@ -49,7 +49,8 @@
 	<jsp:include page="user-navbar.jsp"></jsp:include><br>
 	<div class="sort-container">
 		<h5>SortByPrice</h5>
-		<a href="user-men-display-by-price-low-to-high.jsp">lowtohigh</a>
+		<a href="user-men-display-by-price-low-to-high.jsp">lowtohigh</a>&nbsp;&nbsp;
+		<a href="user-men-display-by-price-high-to-low.jsp">hightolow</a>
 	</div>
 	<%
 	for (ClothDetails clothDetails2 : clothDetails) {

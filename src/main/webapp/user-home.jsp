@@ -25,13 +25,6 @@ section{
 </style>
 </head>
 <body>
-
-	
 	<jsp:include page="user-navbar.jsp"></jsp:include>
-
-	<div>
-	
-	</div>
-
 </body>
 </html>

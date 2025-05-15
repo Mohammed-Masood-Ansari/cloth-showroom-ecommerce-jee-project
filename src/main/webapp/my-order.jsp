@@ -1,3 +1,4 @@
+<%@page import="java.time.LocalDate"%>
 <%@page import="com.jsp.cloth_show_room.dto.User"%>
 <%@page import="com.jsp.cloth_show_room.dao.UserDao"%>
 <%@page import="java.util.Base64"%>
@@ -31,7 +32,6 @@
 		BuyNowDao buyNowDao = new BuyNowDao();
 
 		List<BuyNow> buyNows = buyNowDao.getAllOrderDetailsByUserIdDao(user.getUserId());
-		
 		%>
 		<article>
 			<div class="container">
@@ -53,12 +53,19 @@
 									<th scope="col">DeliveryDate</th>
 									<th scope="col">Address</th>
 									<th scope="col">Cancel</th>
-									<th scope="col">Edit</th>
 								</tr>
 							</thead>
 							<tbody>
 								<%
 								for (BuyNow buyNow : buyNows) {
+								LocalDate bookingDate = buyNow.getBookingdate();
+								
+								int bookingDay = bookingDate.getDayOfMonth();
+								int bookingMonth = bookingDate.getMonthValue();
+								
+								LocalDate todayDate = LocalDate.now();
+								int todayDay = todayDate.getDayOfMonth();
+								int currentMonth = todayDate.getMonthValue();
 								%>
 
 								<%
@@ -88,10 +95,12 @@
 									<td><%=buyNow.getBookingdate()%></td>
 									<td><%=buyNow.getDelivarDate()%></td>
 									<td><%=buyNow.getAddress()%></td>
+									<%if(bookingDay<=todayDay&&bookingMonth<=currentMonth){%>
 									<td><a href="cancelOrder?orderId=<%=buyNow.getOrderId()%>"
 										class="btn btn-danger">Cancel</a></td>
-									<td><a href="editOrder?orderId=<%=buyNow.getOrderId()%>"
-										class="btn btn-warning">Edit</a></td>
+									<%}else{%>
+										<td><a class="btn btn-danger">cant cancel</a></td>
+									<%}%>
 								</tr>
 								<%
 								}

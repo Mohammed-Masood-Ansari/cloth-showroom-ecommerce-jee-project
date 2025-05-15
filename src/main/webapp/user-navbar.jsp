@@ -2,7 +2,7 @@
 <%@page import="java.time.LocalDateTime"%>
 <%@page import="java.time.LocalDate"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,10 +15,11 @@
 	crossorigin="anonymous">
 </head>
 <%
-	User user = (User)request.getAttribute("user");
+User user = (User) request.getAttribute("user");
 %>
 <body>
-	<nav class="navbar navbar-expand-lg navbar-light bg-light" style="position: fixed; z-index: 3;top: 0px; width: 100vw">
+	<nav class="navbar navbar-expand-lg navbar-light bg-light"
+		style="position: fixed; z-index: 3; top: 0px; width: 100vw">
 		<div class="container-fluid">
 			<a class="navbar-brand" href="#">Cloth-Show-Room</a>
 			<button class="navbar-toggler" type="button"
@@ -37,7 +38,7 @@
 					<li class="nav-item"><a class="nav-link" href="user-cart.jsp">myCart</a></li>
 					<li class="nav-item"><a class="nav-link" href="my-order.jsp">myorder</a></li>
 					<li class="nav-item"><a class="nav-link" href="userLogout">logout</a></li>
-			
+
 				</ul>
 			</div>
 		</div>
